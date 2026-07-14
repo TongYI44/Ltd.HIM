@@ -306,7 +306,7 @@
       <ellipse cx="50" cy="70" rx="13" ry="15" fill="#211417"/>
       <ellipse cx="50" cy="68" rx="9" ry="10" fill="#3a2a2f"/>
     </svg>
-    <h1>บริหารลูกแบด<span>หจก.ฮิม </span></h1>
+    <h1>บริหารลูกแบด<span>หจก.ฮิม</span></h1>
     <div class="sub">ติ๊กว่าใครเล่นลูกไหน แล้วให้เว็บหารค่าลูกให้ตามจริง</div>
   </div>
 
@@ -363,7 +363,7 @@
   </div>
   </div>
 
-  <footer>ข้อมูลถูกบันทึกไว้ในเครื่องนี้โดยอัตโนมัติ · ค่าแต่ละลูกจะถูกหารเฉพาะคนที่ติ๊กว่าเล่นลูกนั้น</footer>
+  <footer>ข้อมูลจะแชร์ให้ทุกคนที่เปิดลิงก์นี้เห็นชุดเดียวกัน · ค่าแต่ละลูกจะถูกหารเฉพาะคนที่ติ๊กว่าเล่นลูกนั้น</footer>
 </div>
 
 <script>
@@ -685,8 +685,8 @@ async function doSave(attempt){
 
   if(hasCloudStorage()){
     try{
-      await window.storage.set(STORAGE_KEY, payload, false);
-      setStatus('saved', '☁ บันทึกแล้ว');
+      await window.storage.set(STORAGE_KEY, payload, true);
+      setStatus('saved', '☁ บันทึกแล้ว (แชร์กับทุกคน)');
       return;
     }catch(e){
       if(attempt < 2){
@@ -713,7 +713,7 @@ async function doSave(attempt){
 async function loadState(){
   try{
     if(hasCloudStorage()){
-      const result = await window.storage.get(STORAGE_KEY, false);
+      const result = await window.storage.get(STORAGE_KEY, true);
       if(result && result.value){
         state = Object.assign(state, JSON.parse(result.value));
       }
